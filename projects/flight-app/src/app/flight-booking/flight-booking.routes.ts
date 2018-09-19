@@ -1,3 +1,4 @@
+import { CanDeactivateGuard } from './../shared/deactivation/can-deactivate.guard';
 import { Routes } from '@angular/router';
 import { FlightBookingComponent } from './flight-booking.component';
 import { FlightEditComponent } from './flight-edit/flight-edit.component';
@@ -23,7 +24,8 @@ export const FLIGHT_BOOKING_ROUTES: Routes = [
       },
       {
         path: 'flight-edit/:id',
-        component: FlightEditComponent
+        component: FlightEditComponent,
+        canDeactivate: [CanDeactivateGuard]
       },
       {
         path: 'airports',
