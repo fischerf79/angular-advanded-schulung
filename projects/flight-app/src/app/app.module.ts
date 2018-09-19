@@ -15,6 +15,7 @@ import {NavbarComponent} from './navbar/navbar.component';
 import {SharedModule} from './shared/shared.module';
 import {SidebarComponent} from './sidebar/sidebar.component';
 import { AirportComponent } from './airport/airport.component';
+import { LoggerModule } from '@my/logger-lib';
 
 @NgModule({
   imports: [
@@ -26,7 +27,9 @@ import { AirportComponent } from './airport/airport.component';
 
     FlightApiModule.forRoot(),
     SharedModule.forRoot(),
-    RouterModule.forRoot([...APP_ROUTES], {...APP_EXTRA_OPTIONS})
+    RouterModule.forRoot([...APP_ROUTES], {...APP_EXTRA_OPTIONS}),
+
+    LoggerModule.forRoot({ enableDebug: true })
   ],
   declarations: [
     AppComponent,
