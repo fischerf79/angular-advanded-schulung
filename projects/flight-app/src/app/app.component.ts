@@ -10,13 +10,15 @@ import { OAuthService, JwksValidationHandler } from 'angular-oauth2-oidc';
 })
 export class AppComponent {
   constructor(private loggerService: LoggerService,
-    private oAuthService: OAuthService ) {
+    private oAuthService: OAuthService) {
     this.loggerService.log('log');
     this.loggerService.debug('debug');
 
     this.oAuthService.configure(authConfig);
     this.oAuthService.tokenValidationHandler = new JwksValidationHandler();
-    this.oAuthService.loadDiscoveryDocumentAndTryLogin();
+    this.oAuthService.loadDiscoveryDocumentAndTryLogin();    
+
+    this.oAuthService.setupAutomaticSilentRefresh();
   }
 }
 
