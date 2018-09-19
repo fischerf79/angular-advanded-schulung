@@ -1,12 +1,13 @@
 <div class="card">
   <div class="header">
-    <h1 class="title">Welcome {{userName}}</h1>
+    <h1 *ngIf="userName">Welcome, {{userName}}!</h1>
+    <h1 *ngIf="!userName">Welcome!</h1>
   </div>
   <div class="content">
 
     <div *ngIf="needsLogin" class="alert alert-warning">
-      You have been redirected to this page because you don't have the necessary
-      rights for the reqeusted action. Login with a respective user account!
+      You have been redirected to this page because you don't have the necessary rights for the reqeusted action. Login with a
+      respective user account!
     </div>
 
     <button (click)="login()" class="btn btn-default">Login</button>
@@ -29,5 +30,3 @@
   </div>
 
 </div>
-
-
