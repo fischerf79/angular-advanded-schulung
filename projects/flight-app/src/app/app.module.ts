@@ -16,6 +16,7 @@ import {SharedModule} from './shared/shared.module';
 import {SidebarComponent} from './sidebar/sidebar.component';
 import { AirportComponent } from './airport/airport.component';
 import { LoggerModule } from '@my/logger-lib';
+import { OAuthModule } from 'angular-oauth2-oidc';
 
 @NgModule({
   imports: [
@@ -29,7 +30,9 @@ import { LoggerModule } from '@my/logger-lib';
     SharedModule.forRoot(),
     RouterModule.forRoot([...APP_ROUTES], {...APP_EXTRA_OPTIONS}),
 
-    LoggerModule.forRoot({ enableDebug: true })
+    LoggerModule.forRoot({ enableDebug: true }),
+
+    OAuthModule.forRoot()
   ],
   declarations: [
     AppComponent,
