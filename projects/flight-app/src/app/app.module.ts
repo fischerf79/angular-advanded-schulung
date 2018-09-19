@@ -14,6 +14,7 @@ import {HomeComponent} from './home/home.component';
 import {NavbarComponent} from './navbar/navbar.component';
 import {SharedModule} from './shared/shared.module';
 import {SidebarComponent} from './sidebar/sidebar.component';
+import { AirportComponent } from './airport/airport.component';
 
 @NgModule({
   imports: [
@@ -32,7 +33,8 @@ import {SidebarComponent} from './sidebar/sidebar.component';
     SidebarComponent,
     NavbarComponent,
     HomeComponent,
-    BasketComponent
+    BasketComponent,
+    AirportComponent
   ],
   providers: [],
   bootstrap: [AppComponent]
