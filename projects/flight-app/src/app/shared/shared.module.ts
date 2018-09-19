@@ -1,3 +1,4 @@
+import { ClickWithWarningDirective } from './warning/click-with-warning.directive';
 import { AuthInterceptorService } from './auth/auth-interceptor.service';
 import {CommonModule} from '@angular/common';
 import {NgModule} from '@angular/core';
@@ -11,9 +12,11 @@ import { HTTP_INTERCEPTORS } from '@angular/common/http';
   ],
   declarations: [
     CityPipe,
+    ClickWithWarningDirective
   ],
   exports: [
     CityPipe,
+    ClickWithWarningDirective
   ]
 })
 export class SharedModule {

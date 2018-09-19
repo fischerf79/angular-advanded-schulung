@@ -36,6 +36,9 @@ export class FlightEditComponent implements OnInit, CanDeactivateComponent {
       this.sender = sender;
       this.showWarning = true;
     });
+  }
 
+  public delete(): void {
+    console.log('delete...');
   }
 }
