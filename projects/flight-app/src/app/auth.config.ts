@@ -8,5 +8,5 @@ export const authConfig: AuthConfig = {
     
     clientId: 'spa-demo',
     scope: 'openid profile email voucher',
-    timeoutFactor: 0.01
+    timeoutFactor: 0.75
 }

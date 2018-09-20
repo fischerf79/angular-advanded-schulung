@@ -1,8 +1,8 @@
-import {HttpClient, HttpHeaders, HttpParams} from '@angular/common/http';
-import {Injectable} from '@angular/core';
+import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
+import { Injectable } from '@angular/core';
 
-import {Observable, of} from 'rxjs';
-import {Flight} from '../models/flight';
+import { Observable, of } from 'rxjs';
+import { Flight } from '../models/flight';
 
 
 @Injectable()
@@ -30,11 +30,13 @@ export class FlightService {
     // For offline access
     // let url = '/assets/data/data.json';
 
+    const secureRoute = 'secureflight/byRoute';
+
     // For online access
-    let url = [this.baseUrl, 'secureflight/byRoute'].join('/');
+    let url = [this.baseUrl, 'flight'].join('/');
 
     if (urgent) {
-      url = [this.baseUrl,'error?code=403'].join('/');
+      url = [this.baseUrl, 'error?code=403'].join('/');
     }
 
     let params = new HttpParams()
@@ -44,7 +46,7 @@ export class FlightService {
     let headers = new HttpHeaders()
       .set('Accept', 'application/json');
 
-    const reqObj = {params, headers};
+    const reqObj = { params, headers };
     return this.http.get<Flight[]>(url, reqObj);
     // return of(flights).pipe(delay(this.reqDelay))
 
@@ -70,9 +72,15 @@ export class FlightService {
     let oldFlight = oldFlights[0];
     let oldDate = new Date(oldFlight.date);
 
-    // Mutable
-    oldDate.setTime(oldDate.getTime() + 15 * ONE_MINUTE);
-    oldFlight.date = oldDate.toISOString();
+    // // Mutable
+    // oldDate.setTime(oldDate.getTime() + 15 * ONE_MINUTE);
+    // oldFlight.date = oldDate.toISOString();
+
+    // Immutable
+    let newDate = new Date(oldDate.getTime() + 15 * ONE_MINUTE);
+    let newFlight: Flight = { ...oldFlight, date: newDate.toISOString() };
+    let newFlights = [newFlight, ...oldFlights.slice(1)]
+    this.flights = newFlights;
   }
 
 }
