@@ -1,5 +1,5 @@
 import { FlightCancellingModule } from './flight-booking/flight-cancelling/flight-cancelling.module';
-import {HttpClientModule} from '@angular/common/http';
+import {HttpClientModule, HttpClient} from '@angular/common/http';
 
 import {NgModule} from '@angular/core';
 import {BrowserModule} from '@angular/platform-browser';
@@ -18,6 +18,13 @@ import { AirportComponent } from './airport/airport.component';
 import { LoggerModule } from '@my/logger-lib';
 import { OAuthModule } from 'angular-oauth2-oidc';
 
+import {TranslateModule, TranslateLoader} from '@ngx-translate/core';
+import {TranslateHttpLoader} from '@ngx-translate/http-loader';
+
+export function HttpLoaderFactory(http: HttpClient) {
+  return new TranslateHttpLoader(http, "/assets/i18n/", ".json");
+  }
+
 @NgModule({
   imports: [
     BrowserModule,
@@ -32,7 +39,15 @@ import { OAuthModule } from 'angular-oauth2-oidc';
 
     LoggerModule.forRoot({ enableDebug: true }),
 
-    OAuthModule.forRoot()
+    OAuthModule.forRoot(),
+
+    TranslateModule.forRoot({
+      loader: {
+          provide: TranslateLoader,
+          useFactory: HttpLoaderFactory,
+          deps: [HttpClient]
+      }
+      })
   ],
   declarations: [
     AppComponent,
