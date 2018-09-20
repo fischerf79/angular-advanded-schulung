@@ -22,7 +22,7 @@ import { OAuthModule } from 'angular-oauth2-oidc';
   imports: [
     BrowserModule,
     HttpClientModule,
-    FlightBookingModule,
+    // FlightBookingModule,
 
     FlightCancellingModule,
 
@@ -39,8 +39,7 @@ import { OAuthModule } from 'angular-oauth2-oidc';
     SidebarComponent,
     NavbarComponent,
     HomeComponent,
-    BasketComponent,
-    AirportComponent
+    BasketComponent
   ],
   providers: [],
   bootstrap: [AppComponent]
