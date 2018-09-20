@@ -1,0 +1,452 @@
+<!DOCTYPE html>
+    <html>
+    <head>
+        <meta http-equiv="Content-type" content="text/html;charset=UTF-8">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.10.0-alpha/dist/katex.min.css" integrity="sha384-BTL0nVi8DnMrNdMQZG1Ww6yasK9ZGnUxL1ZWukXQ7fygA1py52yPp9W4wrR00VML" crossorigin="anonymous">
+        <style>
+/*--------------------------------------------------------------------------------------------- * Copyright (c) Microsoft Corporation. All rights reserved. * Licensed under the MIT License. See License.txt in the project root for license information. *--------------------------------------------------------------------------------------------*/ body { font-family: "Segoe WPC", "Segoe UI", "SFUIText-Light", "HelveticaNeue-Light", sans-serif, "Droid Sans Fallback"; font-size: 14px; padding: 0 26px; line-height: 22px; word-wrap: break-word; } #code-csp-warning { position: fixed; top: 0; right: 0; color: white; margin: 16px; text-align: center; font-size: 12px; font-family: sans-serif; background-color:#444444; cursor: pointer; padding: 6px; box-shadow: 1px 1px 1px rgba(0,0,0,.25); } #code-csp-warning:hover { text-decoration: none; background-color:#007acc; box-shadow: 2px 2px 2px rgba(0,0,0,.25); } body.scrollBeyondLastLine { margin-bottom: calc(100vh - 22px); } body.showEditorSelection .code-line { position: relative; } body.showEditorSelection .code-active-line:before, body.showEditorSelection .code-line:hover:before { content: ""; display: block; position: absolute; top: 0; left: -12px; height: 100%; } body.showEditorSelection li.code-active-line:before, body.showEditorSelection li.code-line:hover:before { left: -30px; } .vscode-light.showEditorSelection .code-active-line:before { border-left: 3px solid rgba(0, 0, 0, 0.15); } .vscode-light.showEditorSelection .code-line:hover:before { border-left: 3px solid rgba(0, 0, 0, 0.40); } .vscode-light.showEditorSelection .code-line .code-line:hover:before { border-left: none; } .vscode-dark.showEditorSelection .code-active-line:before { border-left: 3px solid rgba(255, 255, 255, 0.4); } .vscode-dark.showEditorSelection .code-line:hover:before { border-left: 3px solid rgba(255, 255, 255, 0.60); } .vscode-dark.showEditorSelection .code-line .code-line:hover:before { border-left: none; } .vscode-high-contrast.showEditorSelection .code-active-line:before { border-left: 3px solid rgba(255, 160, 0, 0.7); } .vscode-high-contrast.showEditorSelection .code-line:hover:before { border-left: 3px solid rgba(255, 160, 0, 1); } .vscode-high-contrast.showEditorSelection .code-line .code-line:hover:before { border-left: none; } img { max-width: 100%; max-height: 100%; } a { text-decoration: none; } a:hover { text-decoration: underline; } a:focus, input:focus, select:focus, textarea:focus { outline: 1px solid -webkit-focus-ring-color; outline-offset: -1px; } hr { border: 0; height: 2px; border-bottom: 2px solid; } h1 { padding-bottom: 0.3em; line-height: 1.2; border-bottom-width: 1px; border-bottom-style: solid; } h1, h2, h3 { font-weight: normal; } h1 code, h2 code, h3 code, h4 code, h5 code, h6 code { font-size: inherit; line-height: auto; } table { border-collapse: collapse; } table > thead > tr > th { text-align: left; border-bottom: 1px solid; } table > thead > tr > th, table > thead > tr > td, table > tbody > tr > th, table > tbody > tr > td { padding: 5px 10px; } table > tbody > tr + tr > td { border-top: 1px solid; } blockquote { margin: 0 7px 0 5px; padding: 0 16px 0 10px; border-left-width: 5px; border-left-style: solid; } code { font-family: Menlo, Monaco, Consolas, "Droid Sans Mono", "Courier New", monospace, "Droid Sans Fallback"; font-size: 14px; line-height: 19px; } body.wordWrap pre { white-space: pre-wrap; } .mac code { font-size: 12px; line-height: 18px; } pre:not(.hljs), pre.hljs code > div { padding: 16px; border-radius: 3px; overflow: auto; } /** Theming */ pre code { color: var(--vscode-editor-foreground); } .vscode-light pre:not(.hljs), .vscode-light code > div { background-color: rgba(220, 220, 220, 0.4); } .vscode-dark pre:not(.hljs), .vscode-dark code > div { background-color: rgba(10, 10, 10, 0.4); } .vscode-high-contrast pre:not(.hljs), .vscode-high-contrast code > div { background-color: rgb(0, 0, 0); } .vscode-high-contrast h1 { border-color: rgb(0, 0, 0); } .vscode-light table > thead > tr > th { border-color: rgba(0, 0, 0, 0.69); } .vscode-dark table > thead > tr > th { border-color: rgba(255, 255, 255, 0.69); } .vscode-light h1, .vscode-light hr, .vscode-light table > tbody > tr + tr > td { border-color: rgba(0, 0, 0, 0.18); } .vscode-dark h1, .vscode-dark hr, .vscode-dark table > tbody > tr + tr > td { border-color: rgba(255, 255, 255, 0.18); } 
+</style>
+<style>
+/* Tomorrow Theme */ /* http://jmblog.github.com/color-themes-for-google-code-highlightjs */ /* Original theme - https://github.com/chriskempson/tomorrow-theme */ /* Tomorrow Comment */ .hljs-comment, .hljs-quote { color: #8e908c; } /* Tomorrow Red */ .hljs-variable, .hljs-template-variable, .hljs-tag, .hljs-name, .hljs-selector-id, .hljs-selector-class, .hljs-regexp, .hljs-deletion { color: #c82829; } /* Tomorrow Orange */ .hljs-number, .hljs-built_in, .hljs-builtin-name, .hljs-literal, .hljs-type, .hljs-params, .hljs-meta, .hljs-link { color: #f5871f; } /* Tomorrow Yellow */ .hljs-attribute { color: #eab700; } /* Tomorrow Green */ .hljs-string, .hljs-symbol, .hljs-bullet, .hljs-addition { color: #718c00; } /* Tomorrow Blue */ .hljs-title, .hljs-section { color: #4271ae; } /* Tomorrow Purple */ .hljs-keyword, .hljs-selector-tag { color: #8959a8; } .hljs { display: block; overflow-x: auto; color: #4d4d4c; padding: 0.5em; } .hljs-emphasis { font-style: italic; } .hljs-strong { font-weight: bold; }
+</style>
+<style>
+.task-list-item { list-style-type: none; } .task-list-item-checkbox { margin-left: -20px; vertical-align: middle; }
+</style>
+        <style>
+            body {
+                font-family: -apple-system, BlinkMacSystemFont, 'Segoe WPC', 'Segoe UI', 'HelveticaNeue-Light', 'Ubuntu', 'Droid Sans', sans-serif;
+                font-size: 14px;
+                line-height: 1.6;
+            }
+        </style>
+    </head>
+    <body>
+        <h1 id="reactive-forms">Reactive Forms</h1>
+<ul>
+<li><a href="#reactive-forms">Reactive Forms</a>
+<ul>
+<li><a href="#fl%C3%BCge-editieren">Flüge editieren</a></li>
+<li><a href="#standard-validatoren-nutzen">Standard-Validatoren nutzen</a></li>
+<li><a href="#benutzerdefinierte-validatoren">Benutzerdefinierte Validatoren</a></li>
+<li><a href="#parametrisierbare-validatoren">Parametrisierbare Validatoren</a></li>
+<li><a href="#multi-field-validatoren">Multi-Field-Validatoren</a></li>
+<li><a href="#bonus-flug-laden">Bonus: Flug laden *</a></li>
+<li><a href="#bonus-flug-speichern">Bonus: Flug speichern *</a></li>
+</ul>
+</li>
+</ul>
+<h2 id="fl%C3%BCge-editieren">Flüge editieren</h2>
+<p>In dieser Übung erstellen Sie ein reaktives Formular zum Bearbeiten von Flügen.</p>
+<ol>
+<li>
+<p><strong>Falls</strong> Sie noch keine <code>FlugEditComponent</code> haben: Legen Sie eine <code>FlugEditComponent</code> im <code>FlightBookingModule</code> an und rufen Sie sie im Template der <code>FlightSearchComponent</code> auf.</p>
+</li>
+<li>
+<p>Importieren Sie das <code>ReactiveFormsModule</code> in Ihrem <code>FlightBookingModule</code>.</p>
+ <details>
+ <summary>Code anzeigen</summary>
+ <p>
+<pre class="hljs"><code><div>[...]
+<span class="hljs-keyword">import</span> { ReactiveFormsModule } <span class="hljs-keyword">from</span> <span class="hljs-string">'@angular/forms'</span>;
+[...]
+
+<span class="hljs-meta">@NgModule</span>({
+    [...]
+    imports: [
+        [...]
+        ReactiveFormsModule
+    ],
+    [...]
+})
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">class</span> FlightBookingModule {
+}
+</div></code></pre>
+ </p>
+ </details>
+</li>
+<li>
+<p>Spendieren Sie Ihrer <code>FlightEditComponent</code> eine FormGroup mit dem Namen <code>editForm</code>.</p>
+ <details>
+ <summary>Code anzeigen</summary>
+ <p>
+<pre class="hljs"><code><div>
+[...]
+<span class="hljs-keyword">import</span> {FormGroup} <span class="hljs-keyword">from</span> <span class="hljs-string">'@angular/forms'</span>;
+
+<span class="hljs-meta">@Component</span>({[...]})
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">class</span> FlightEditComponent <span class="hljs-keyword">implements</span> OnInit {
+
+    editForm: FormGroup;
+
+    [...]
+}
+</div></code></pre>
+ </p>
+ </details>
+</li>
+<li>
+<p>Lassen Sie sich den FormBuilder in die <code>FlightEditComponent</code> injizieren.</p>
+ <details>
+ <summary>Code anzeigen</summary>
+ <p>
+<pre class="hljs"><code><div><span class="hljs-keyword">import</span> {[...], FormBuilder} <span class="hljs-keyword">from</span> <span class="hljs-string">'@angular/forms'</span>;
+
+<span class="hljs-meta">@Component</span>({
+    [...]
+})
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">class</span> FlightEditComponent <span class="hljs-keyword">implements</span> OnInit {
+    [...]  
+    <span class="hljs-keyword">constructor</span>(<span class="hljs-params"><span class="hljs-keyword">private</span> fb: FormBuilder</span>) {
+    }
+    [...]
+}
+</div></code></pre>
+ </p>
+ </details>
+</li>
+<li>
+<p>Nutzen Sie den <code>FormsBuilder</code> in der Methode <code>ngOnInit</code> um eine <code>FormGroup</code> zu erzeugen, die einen Flug beschreibt. Legen Sie diese in <code>editForm</code> ab.</p>
+ <details>
+ <summary>Code anzeigen</summary>
+ <p>
+<pre class="hljs"><code><div>
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">class</span> FlightEditComponent <span class="hljs-keyword">implements</span> OnInit {
+    [...]  
+    ngOnInit() {
+        <span class="hljs-keyword">this</span>.editForm = <span class="hljs-keyword">this</span>.fb.group({
+            id:   [<span class="hljs-number">1</span>],
+            <span class="hljs-keyword">from</span>: [],
+            to:   [],
+            date: []
+        });
+    }
+    [...]
+}
+</div></code></pre>
+ </p>
+ </details>
+</li>
+<li>
+<p>Erkunden Sie mit der Codevervollständigung Ihrer IDE/ Ihres Editors die Methoden von <code>editForm</code>. Geben Sie zur Demonstration die Eigenschaften <code>value</code>, <code>valid</code>, <code>touched</code> und <code>dirty</code> auf der Konsole aus.</p>
+ <details>
+ <summary>Code anzeigen</summary>
+ <p>
+<pre class="hljs"><code><div>
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">class</span> FlightEditComponent <span class="hljs-keyword">implements</span> OnInit {
+    [...]  
+    ngOnInit() {
+        [...]
+        <span class="hljs-built_in">console</span>.log(<span class="hljs-keyword">this</span>.editForm.value);
+        <span class="hljs-built_in">console</span>.log(<span class="hljs-keyword">this</span>.editForm.valid);
+        <span class="hljs-built_in">console</span>.log(<span class="hljs-keyword">this</span>.editForm.touched);
+        <span class="hljs-built_in">console</span>.log(<span class="hljs-keyword">this</span>.editForm.dirty);
+    }
+    [...]
+}
+</div></code></pre>
+ </p>
+ </details>
+</li>
+<li>
+<p>Registrieren Sie sich bei <code>editForm</code> zusätzlich für <code>valueChanges</code> und geben Sie den erhaltenen Wert auch auf der Konsole aus, um sich über Änderungen am Formular am Laufenden zu halten.</p>
+ <details>
+ <summary>Code anzeigen</summary>
+ <p>
+<pre class="hljs"><code><div>
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">class</span> FlightEditComponent <span class="hljs-keyword">implements</span> OnInit {
+[...]  
+    ngOnInit() {
+        [...]
+        <span class="hljs-keyword">this</span>.editForm.valueChanges.subscribe(<span class="hljs-function"><span class="hljs-params">v</span> =&gt;</span> {
+            <span class="hljs-built_in">console</span>.debug(<span class="hljs-string">'changes'</span>, v);
+        });
+    }
+[...]
+}
+</div></code></pre>
+ </p>
+ </details>
+</li>
+<li>
+<p>Wechseln Sie nun in die Datei <code>flight-edit.component.html</code>. Erzeugen Sie dort ein Formular, dass Sie mit der <code>FormGroups</code> in der Eigenschaft <code>editForm</code> verknüpfen.</p>
+ <details>
+ <summary>Code anzeigen</summary>
+ <p>
+<pre class="hljs"><code><div><span class="hljs-tag">&lt;<span class="hljs-name">form</span> [<span class="hljs-attr">formGroup</span>]=<span class="hljs-string">"editForm"</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"form-group"</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">label</span>&gt;</span>Id:<span class="hljs-tag">&lt;/<span class="hljs-name">label</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">formControlName</span>=<span class="hljs-string">"id"</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"form-control"</span>&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+
+    <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"form-group"</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">label</span>&gt;</span>Date:<span class="hljs-tag">&lt;/<span class="hljs-name">label</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">formControlName</span>=<span class="hljs-string">"date"</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"form-control"</span>&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+
+    <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"form-group"</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">label</span>&gt;</span>From:<span class="hljs-tag">&lt;/<span class="hljs-name">label</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">formControlName</span>=<span class="hljs-string">"from"</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"form-control"</span>&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+
+    <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"form-group"</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">label</span>&gt;</span>To:<span class="hljs-tag">&lt;/<span class="hljs-name">label</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">formControlName</span>=<span class="hljs-string">"to"</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"form-control"</span>&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+
+    <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"form-group"</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">button</span> (<span class="hljs-attr">click</span>)=<span class="hljs-string">"save()"</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"btn btn-default"</span>&gt;</span>Save<span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+
+<span class="hljs-tag">&lt;/<span class="hljs-name">form</span>&gt;</span>
+</div></code></pre>
+ </p>
+ </details>
+</li>
+<li>
+<p>Testen Sie Ihre Lösung. Falls alles funktioniert, sollten Sie jede Änderung, die Sie am Formular vornehmen, auf der Konsole angezeigt bekommen.</p>
+</li>
+</ol>
+<h2 id="standard-validatoren-nutzen">Standard-Validatoren nutzen</h2>
+<p>In dieser Übung werden Sie das Feld from mit den Standardvalidatoren <code>required</code> und <code>minlength</code> validieren.</p>
+<ol>
+<li>
+<p>Wechseln Sie in die Datei flight-edit.component.ts und geben Sie beim Einrichten der FormGroup an, dass die Eigenschaft from mit <code>required</code> und <code>minlength</code> zu validieren ist. Letzterer Validator soll sicherstellen, dass zumindest drei Zeichen erfasst werden.</p>
+ <details>
+ <summary>Code anzeigen</summary>
+ <p>
+<pre class="hljs"><code><div>[...]
+ngOnInit(): <span class="hljs-built_in">void</span> {
+    <span class="hljs-keyword">this</span>.editForm = <span class="hljs-keyword">this</span>.fb.group({
+        id:   [<span class="hljs-number">1</span>],
+        <span class="hljs-keyword">from</span>: [<span class="hljs-literal">null</span>, [Validators.required, Validators.minLength(<span class="hljs-number">3</span>)]],
+        to:   [<span class="hljs-literal">null</span>],
+        date: [<span class="hljs-literal">null</span>]
+    });
+
+}
+[...]		
+</div></code></pre>
+ </p>
+ </details>
+</li>
+<li>
+<p>Wechseln Sie in die Datei <code>flight-edit.component.html</code> und geben Sie dort die Eigenschaft <code>errors</code> des Controls <code>from</code> aus.</p>
+ <details>
+ <summary>Code anzeigen</summary>
+ <p>
+<pre class="hljs"><code><div>&lt;input  formControlName=<span class="hljs-string">"from"</span>&gt;		
+[...]           
+errors: {{editForm.controls[<span class="hljs-string">'from'</span>].errors | json}}	
+</div></code></pre>
+ </p>
+ </details> 
+</li>
+<li>
+<p>Nutzen Sie auch die Methode <code>hasError</code> des Controls, um herauszufinden, ob der Fehler <code>minlength</code> aufgetreten ist.</p>
+ <details>
+ <summary>Code anzeigen</summary>
+ <p>
+<pre class="hljs"><code><div>&lt;input  formControlName=<span class="hljs-string">"from"</span> [...] &gt;		
+[...]
+&lt;div <span class="hljs-keyword">class</span>=<span class="hljs-string">"text-danger"</span> *ngIf=<span class="hljs-string">"editForm.controls['from'].hasError('minlength')"</span>&gt;		
+    ...minlength...
+&lt;<span class="hljs-regexp">/div&gt;		
+</span></div></code></pre>
+ </p>
+ </details>
+</li>
+</ol>
+<h2 id="benutzerdefinierte-validatoren">Benutzerdefinierte Validatoren</h2>
+<p>In dieser Übung werden Sie einen eigenen Validator, der erfasste Städte gegen eine hardcodierte Whitelist prüft, für Ihr reaktives Formular schreiben.</p>
+<ol>
+<li>
+<p>Erstellen Sie im Ordner <code>shared</code> einen Ordner <code>validation</code> (falls noch nicht vorhanden).</p>
+</li>
+<li>
+<p>Erstellen Sie im Ordner <code>validation</code> eine Datei <code>city-validator.ts</code>. Platzieren Sie dort eine Validierungs-Funktion <code>validateCity</code>, die ein <code>AbstractControl</code> entgegennimmt, die erfasste Stadt gegen hardcodierte Werte prüft und ein Fehlerbeschreibungsobjekt zurückliefert.</p>
+ <details>
+ <summary>Code anzeigen</summary>
+ <p>
+<pre class="hljs"><code><div><span class="hljs-keyword">import</span> {AbstractControl, ValidationErrors} <span class="hljs-keyword">from</span> <span class="hljs-string">'@angular/forms'</span>;
+
+<span class="hljs-keyword">export</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">validateCity</span>(<span class="hljs-params">c: AbstractControl</span>) </span>{
+    <span class="hljs-keyword">const</span> validCities: <span class="hljs-built_in">string</span>[] = [<span class="hljs-string">'Vienna'</span>, <span class="hljs-string">'Cologne'</span>, <span class="hljs-string">'Bern'</span>];
+    <span class="hljs-keyword">if</span> (c.value &amp;&amp; validCities.indexOf(c.value) === <span class="hljs-number">-1</span>) {
+        <span class="hljs-keyword">return</span> {
+            city: {
+                actualValue: c.value,
+                validCities: validCities
+            }
+        }
+    }
+    <span class="hljs-keyword">return</span> <span class="hljs-literal">null</span>;
+}
+</div></code></pre>
+ </p>
+ </details>
+</li>
+<li>
+<p>Wechseln Sie in die Datei <code>flight-edit.component.ts</code> und registrieren Sie dort die neue Validierungsfunktion für das Feld <code>from</code>.</p>
+ <details>
+ <summary>Code anzeigen</summary>
+ <p>
+<pre class="hljs"><code><div>[...]
+<span class="hljs-keyword">import</span> {validateCity} <span class="hljs-keyword">from</span> <span class="hljs-string">'[...]'</span>;
+
+<span class="hljs-meta">@Component</span>({
+    [...]
+})
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">class</span> FlightEditComponent <span class="hljs-keyword">implements</span> OnInit {
+
+ngOnInit(): <span class="hljs-built_in">void</span> {
+    <span class="hljs-keyword">this</span>.editForm = <span class="hljs-keyword">this</span>.fb.group({
+        [...]
+        <span class="hljs-keyword">from</span>: [<span class="hljs-literal">null</span>, [[...], validateCity]],
+        [...]
+    });
+}
+</div></code></pre>
+ </p>
+ </details>
+</li>
+<li>
+<p>Wechseln Sie in die Datei <code>flight-edit.component.html</code> und prüfen Sie, ob der benutzerdefinierte Fehler <code>city</code> aufgetreten ist. Geben Sie in diesem Fall eine Fehlermeldung aus.</p>
+ <details>
+ <summary>Code anzeigen</summary>
+ <p>
+<pre class="hljs"><code><div>[...]
+<span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"text-danger"</span> *<span class="hljs-attr">ngIf</span>=<span class="hljs-string">"editForm.controls['from'].hasError('city')"</span>&gt;</span>
+    ...city...
+<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+[...]
+</div></code></pre>
+ </p>
+ </details>
+</li>
+<li>
+<p>Testen Sie Ihre Lösung</p>
+</li>
+</ol>
+<h2 id="parametrisierbare-validatoren">Parametrisierbare Validatoren</h2>
+<p>In dieser Übung werden Sie den Validator aus der letzten Übung parametrisierbar gestalten, sodass er die Eingaben gegen eine Whitelist, die als Parameter übergeben wird, prüft.</p>
+<ol>
+<li>
+<p>Wechseln Sie in die Datei <code>city-validator.ts</code> und erweitern Sie die Funktion <code>validateCity</code>, sodass Sie eine Whitelist mit Städtenamen als String-Array entgegen nimmt und die eigentliche Validierungsfunktion zurückliefert.</p>
+ <details>
+ <summary>Code anzeigen</summary>
+ <p>
+<pre class="hljs"><code><div><span class="hljs-keyword">import</span> {[...], ValidatorFn} <span class="hljs-keyword">from</span> <span class="hljs-string">'@angular/forms'</span>;
+[...]
+<span class="hljs-keyword">export</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">validateCity</span> (<span class="hljs-params">validCities: <span class="hljs-built_in">string</span>[]</span>): <span class="hljs-title">ValidatorFn</span> </span>{
+    <span class="hljs-keyword">return</span> <span class="hljs-function">(<span class="hljs-params">c: AbstractControl</span>) =&gt;</span> {
+        <span class="hljs-keyword">if</span> (c.value &amp;&amp; validCities.indexOf(c.value) === <span class="hljs-number">-1</span>) {
+            <span class="hljs-keyword">return</span> {
+                city: {
+                    actualValue: c.value,
+                    validCities: validCities
+                }
+            };
+        }
+        <span class="hljs-keyword">return</span> <span class="hljs-literal">null</span>;
+    };
+}
+</div></code></pre>
+ </p>
+ </details>
+</li>
+<li>
+<p>Öffnen Sie die Datei <code>flight-edit.component.ts</code> und aktualisieren Sie hier die Nutzung von <code>validateCity</code>, sodass eine Whitelist übergeben wird.</p>
+ <details>
+ <summary>Code anzeigen</summary>
+ <p>
+<pre class="hljs"><code><div>[...]
+<span class="hljs-keyword">this</span>.editForm = <span class="hljs-keyword">this</span>.fb.group({
+    [...]
+    <span class="hljs-keyword">from</span>: [<span class="hljs-literal">null</span>, [[...], validateCity([<span class="hljs-string">'Vienna'</span>, <span class="hljs-string">'Berlin'</span>, <span class="hljs-string">'Gleisdorf'</span>])]],
+    [...]
+    });
+[...]
+</div></code></pre>
+ </p>
+ </details>
+</li>
+<li>
+<p>Testen Sie Ihre Lösung.</p>
+</li>
+</ol>
+<h2 id="multi-field-validatoren">Multi-Field-Validatoren</h2>
+<p>In dieser Übung werden Sie einen Multifield-Validator schreiben, der sicherstellt, dass in den Feldern <code>from</code> und <code>to</code> ein unterschiedlicher Wert erfasst ist.</p>
+<ol>
+<li>
+<p>Erstellen Sie unter shared/validation eine Datei <code>round-trip-validator.ts</code>.</p>
+</li>
+<li>
+<p>Spendieren Sie dieser neuen Datei eine Validierungsfunktion <code>validateRoundTrip</code>, welche eine <code>FormGroup</code> entgegennimmt, deren Controls <code>from</code> und <code>to</code> ermittelt sowie - falls diese existieren - prüft, ob sie den selben Wert aufweisen.</p>
+ <details>
+ <summary>Code anzeigen</summary>
+ <p>
+<pre class="hljs"><code><div>[...]   
+<span class="hljs-keyword">export</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">validateRoundTrip</span>(<span class="hljs-params">g: FormGroup</span>): <span class="hljs-title">object</span> </span>{
+   <span class="hljs-keyword">let</span> <span class="hljs-keyword">from</span> = g.controls[<span class="hljs-string">'from'</span>];
+   <span class="hljs-keyword">let</span> to = g.controls[<span class="hljs-string">'to'</span>];
+
+   <span class="hljs-keyword">if</span> (!<span class="hljs-keyword">from</span> || !to) <span class="hljs-keyword">return</span> <span class="hljs-literal">null</span>;
+
+   <span class="hljs-keyword">if</span> (<span class="hljs-keyword">from</span>.value === to.value) {
+       <span class="hljs-keyword">return</span> { roundTrip: <span class="hljs-literal">true</span> };
+   }
+
+   <span class="hljs-keyword">return</span> <span class="hljs-literal">null</span>;
+}
+[...]
+</div></code></pre>
+ </p>
+ </details>
+</li>
+<li>
+<p>Wechseln Sie in die Datei <code>flight-edit.component.ts</code> und registrieren Sie den neuen Validator bei der <code>FormGroup</code>.</p>
+ <details>
+ <summary>Code anzeigen</summary>
+ <p>
+<pre class="hljs"><code><div>[...]
+<span class="hljs-keyword">import</span> {validateRountTrip} <span class="hljs-keyword">from</span> <span class="hljs-string">'[...]'</span>;
+
+<span class="hljs-meta">@Component</span>({
+    [...]
+})
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">class</span> FlightEditComponent <span class="hljs-keyword">implements</span> OnInit {
+
+    ngOnInit(): <span class="hljs-built_in">void</span> {
+        [...]
+        <span class="hljs-keyword">this</span>.editForm.validator = validateRoundTrip;
+    }
+
+}
+</div></code></pre>
+ </p>
+ </details>
+</li>
+<li>
+<p>Öffnen Sie die Datei <code>flight-edit.component.html</code> und prüfen Sie, ob der Fehler <code>rountTrip</code> aufgetreten ist. Geben Sie in diesem Fall eine Fehlermeldung aus.</p>
+ <details>
+ <summary>Code anzeigen</summary>
+ <p>
+<pre class="hljs"><code><div>[...]
+<span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"text-danger"</span> *<span class="hljs-attr">ngIf</span>=<span class="hljs-string">"editForm?.hasError('roundTrip')"</span>&gt;</span>
+    ...roundTrip...
+<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+[...]
+</div></code></pre>
+ </p>
+ </details>
+</li>
+</ol>
+<h2 id="bonus-flug-laden">Bonus: Flug laden *</h2>
+<p>Laden Sie den Flug, dessen Url via Routing an die Komponente übergeben wird und stellen Sie ihn im Formular dar. Hierzu können Sie den Flug an die Methode <code>patchValue</code> von <code>editForm</code> übergeben.</p>
+<h2 id="bonus-flug-speichern">Bonus: Flug speichern *</h2>
+<p>Richten Sie eine Schaltfläche zum Speichern ein. Diese soll den aktuellen Flug aus dem Formular abrufen (<code>editForm.value</code>) und ihn an eine <code>save</code>-Methode des <code>FlightService</code>s übergeben.</p>
+<p>Diese soll den Flug mit der <code>post</code>-Methode des <code>HttpClients</code> zum Server senden (<code>http.post&lt;Flight&gt;(url, flight).subscribe(...)</code>).</p>
+<p><strong>Bitte beachten Sie</strong>, dass Sie Datensätze mit den Ids 1 bis 5 nicht speichern können. Diese sind Präsentationen vorbehalten. Um einen neuen Datensatz einzufügen, vergeben Sie die Id 0.</p>
+
+    </body>
+    </html>
