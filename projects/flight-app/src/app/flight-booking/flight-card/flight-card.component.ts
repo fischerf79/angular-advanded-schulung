@@ -1,3 +1,4 @@
+import { TranslateService } from '@ngx-translate/core';
 import {
   Component,
   ElementRef,
@@ -9,7 +10,9 @@ import {
   OnInit,
   Output,
   SimpleChanges,
-  ChangeDetectionStrategy
+  ChangeDetectionStrategy,
+  LOCALE_ID,
+  Inject
 } from '@angular/core';
 import {Flight} from '@flight-workspace/flight-api';
 
@@ -24,7 +27,7 @@ export class FlightCardComponent implements OnInit, OnChanges, OnDestroy {
   @Input() selected: boolean;
   @Output() selectedChange = new EventEmitter<boolean>();
 
-  constructor(private element: ElementRef, private zone: NgZone) {
+  constructor(private element: ElementRef, private zone: NgZone, private translateService: TranslateService) {
   }
 
   ngOnInit() {
@@ -59,6 +62,10 @@ export class FlightCardComponent implements OnInit, OnChanges, OnDestroy {
     });
 
     return null;
+  }
+
+  get locale(): string {
+    return this.translateService.currentLang;
   }
 
 
