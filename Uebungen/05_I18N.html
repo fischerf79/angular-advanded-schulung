@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+    <html>
+    <head>
+        <meta http-equiv="Content-type" content="text/html;charset=UTF-8">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.9.0/katex.min.css" integrity="sha384-TEMocfGvRuD1rIAacqrknm5BQZ7W7uWitoih+jMNFXQIbNl16bO8OZmylH/Vi/Ei" crossorigin="anonymous">
+        <style>
+/*--------------------------------------------------------------------------------------------- * Copyright (c) Microsoft Corporation. All rights reserved. * Licensed under the MIT License. See License.txt in the project root for license information. *--------------------------------------------------------------------------------------------*/ body { font-family: "Segoe WPC", "Segoe UI", "SFUIText-Light", "HelveticaNeue-Light", sans-serif, "Droid Sans Fallback"; font-size: 14px; padding: 0 12px; line-height: 22px; word-wrap: break-word; } body.scrollBeyondLastLine { margin-bottom: calc(100vh - 22px); } body.showEditorSelection .code-line { position: relative; } body.showEditorSelection .code-active-line:before, body.showEditorSelection .code-line:hover:before { content: ""; display: block; position: absolute; top: 0; left: -12px; height: 100%; } body.showEditorSelection li.code-active-line:before, body.showEditorSelection li.code-line:hover:before { left: -30px; } .vscode-light.showEditorSelection .code-active-line:before { border-left: 3px solid rgba(0, 0, 0, 0.15); } .vscode-light.showEditorSelection .code-line:hover:before { border-left: 3px solid rgba(0, 0, 0, 0.40); } .vscode-dark.showEditorSelection .code-active-line:before { border-left: 3px solid rgba(255, 255, 255, 0.4); } .vscode-dark.showEditorSelection .code-line:hover:before { border-left: 3px solid rgba(255, 255, 255, 0.60); } .vscode-high-contrast.showEditorSelection .code-active-line:before { border-left: 3px solid rgba(255, 160, 0, 0.7); } .vscode-high-contrast.showEditorSelection .code-line:hover:before { border-left: 3px solid rgba(255, 160, 0, 1); } img { max-width: 100%; max-height: 100%; } a { color: #4080D0; text-decoration: none; } a:focus, input:focus, select:focus, textarea:focus { outline: 1px solid -webkit-focus-ring-color; outline-offset: -1px; } hr { border: 0; height: 2px; border-bottom: 2px solid; } h1 { padding-bottom: 0.3em; line-height: 1.2; border-bottom-width: 1px; border-bottom-style: solid; } h1, h2, h3 { font-weight: normal; } h1 code, h2 code, h3 code, h4 code, h5 code, h6 code { font-size: inherit; line-height: auto; } a:hover { color: #4080D0; text-decoration: underline; } table { border-collapse: collapse; } table > thead > tr > th { text-align: left; border-bottom: 1px solid; } table > thead > tr > th, table > thead > tr > td, table > tbody > tr > th, table > tbody > tr > td { padding: 5px 10px; } table > tbody > tr + tr > td { border-top: 1px solid; } blockquote { margin: 0 7px 0 5px; padding: 0 16px 0 10px; border-left: 5px solid; } code { font-family: Menlo, Monaco, Consolas, "Droid Sans Mono", "Courier New", monospace, "Droid Sans Fallback"; font-size: 14px; line-height: 19px; } body.wordWrap pre { white-space: pre-wrap; } .mac code { font-size: 12px; line-height: 18px; } code > div { padding: 16px; border-radius: 3px; overflow: auto; } /** Theming */ .vscode-light { color: rgb(30, 30, 30); } .vscode-dark { color: #DDD; } .vscode-high-contrast { color: white; } .vscode-light code { color: #A31515; } .vscode-dark code { color: #D7BA7D; } .vscode-light code > div { background-color: rgba(220, 220, 220, 0.4); } .vscode-dark code > div { background-color: rgba(10, 10, 10, 0.4); } .vscode-high-contrast code > div { background-color: rgb(0, 0, 0); } .vscode-high-contrast h1 { border-color: rgb(0, 0, 0); } .vscode-light table > thead > tr > th { border-color: rgba(0, 0, 0, 0.69); } .vscode-dark table > thead > tr > th { border-color: rgba(255, 255, 255, 0.69); } .vscode-light h1, .vscode-light hr, .vscode-light table > tbody > tr + tr > td { border-color: rgba(0, 0, 0, 0.18); } .vscode-dark h1, .vscode-dark hr, .vscode-dark table > tbody > tr + tr > td { border-color: rgba(255, 255, 255, 0.18); } .vscode-light blockquote, .vscode-dark blockquote { background: rgba(127, 127, 127, 0.1); border-color: rgba(0, 122, 204, 0.5); } .vscode-high-contrast blockquote { background: transparent; border-color: #fff; }
+</style>
+<style>
+/* Tomorrow Theme */ /* http://jmblog.github.com/color-themes-for-google-code-highlightjs */ /* Original theme - https://github.com/chriskempson/tomorrow-theme */ /* Tomorrow Comment */ .hljs-comment, .hljs-quote { color: #8e908c; } /* Tomorrow Red */ .hljs-variable, .hljs-template-variable, .hljs-tag, .hljs-name, .hljs-selector-id, .hljs-selector-class, .hljs-regexp, .hljs-deletion { color: #c82829; } /* Tomorrow Orange */ .hljs-number, .hljs-built_in, .hljs-builtin-name, .hljs-literal, .hljs-type, .hljs-params, .hljs-meta, .hljs-link { color: #f5871f; } /* Tomorrow Yellow */ .hljs-attribute { color: #eab700; } /* Tomorrow Green */ .hljs-string, .hljs-symbol, .hljs-bullet, .hljs-addition { color: #718c00; } /* Tomorrow Blue */ .hljs-title, .hljs-section { color: #4271ae; } /* Tomorrow Purple */ .hljs-keyword, .hljs-selector-tag { color: #8959a8; } .hljs { display: block; overflow-x: auto; color: #4d4d4c; padding: 0.5em; } .hljs-emphasis { font-style: italic; } .hljs-strong { font-weight: bold; }
+</style>
+<style>
+ul.contains-task-list { padding-left: 0; } ul ul.contains-task-list { padding-left: 40px; } .task-list-item { list-style-type: none; } .task-list-item-checkbox { vertical-align: middle; }
+</style>
+        <style>
+            body {
+                font-family: -apple-system, BlinkMacSystemFont, 'Segoe WPC', 'Segoe UI', 'HelveticaNeue-Light', 'Ubuntu', 'Droid Sans', sans-serif;
+                font-size: 14px;
+                line-height: 1.6;
+            }
+        </style>
+    </head>
+    <body>
+        <h1 id="i18n-with-ngx-translate">I18N with ngx-translate</h1>
+<ul>
+<li><a href="#i18n-with-ngx-translate">I18N with ngx-translate</a>
+<ul>
+<li><a href="#ngx-translate">ngx-translate</a></li>
+<li><a href="#bonus--use-different-date-formats">Bonus: Use different date formats *</a></li>
+</ul>
+</li>
+</ul>
+<h2 id="ngx-translate">ngx-translate</h2>
+<ol>
+<li>
+<p>Take a look at the file <code>package.json</code> and notice that the packages <code>@ngx-translate/core</code> and <code>@ngx-translate/http-loader</code> are already installed.</p>
+</li>
+<li>
+<p>Include the <code>TranslateModule</code> into your <code>AppModule</code> and configure the <code>TranslateHttpLoader</code> as the loader for translation texts.</p>
+ <details>
+ <summary>Show code</summary>
+ <p>
+<pre class="hljs"><code><div>
+<span class="hljs-keyword">import</span> {TranslateModule, TranslateLoader} from <span class="hljs-string">'@ngx-translate/core'</span>;
+<span class="hljs-keyword">import</span> {TranslateHttpLoader} from <span class="hljs-string">'@ngx-translate/http-loader'</span>;
+
+[…]
+
+<span class="hljs-keyword">export</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">HttpLoaderFactory</span>(<span class="hljs-params">http: HttpClient</span>) </span>{
+<span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> TranslateHttpLoader(http, <span class="hljs-string">"/assets/i18n/"</span>, <span class="hljs-string">".json"</span>);
+}
+
+[…]
+
+@NgModule({
+imports: [ 
+    BrowserModule,
+    FormsModule,  
+    HttpModule,   
+    [...]
+    TranslateModule.forRoot({
+    loader: {
+        provide: TranslateLoader,
+        useFactory: HttpLoaderFactory,
+        deps: [HttpClient]
+    }
+    })
+],
+[...]
+})
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">class</span> AppModule {
+}
+</div></code></pre>
+ </p>
+ </details>
+</li>
+<li>
+<p>Include the <code>TranslateModule</code> into the <code>FlightBookingModule</code>.</p>
+ <details>
+ <summary>Show code</summary>
+ <p>
+<pre class="hljs"><code><div>
+@NgModule({
+    imports: [
+        CommonModule, 
+        FormsModule, 
+        [...]
+        TranslateModule.forChild()
+    ],
+    [...]
+})
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">class</span> FlightBookingModule {
+}
+</div></code></pre>
+ </p>
+ </details>
+</li>
+<li>
+<p>Provide translation files for selected texts of the <code>FlightSearchComponent</code>. Name the files <code>de.json</code> and <code>en.json</code>.
+Of course you can also use other languages. However, it is important that you place the files in the folder <code>src/assets/i18n</code>.</p>
+ <details>
+ <summary>Show code</summary>
+ <p>
+<pre class="hljs"><code><div>
+{
+    <span class="hljs-attr">"FLIGHTS"</span>: {
+        <span class="hljs-attr">"search"</span>: <span class="hljs-string">"Search"</span>,
+        <span class="hljs-attr">"found"</span>: <span class="hljs-string">"{{count}} Entries found."</span>
+    }
+}
+</div></code></pre>
+ </p>
+ </details>
+</li>
+<li>
+<p>Let the <code>AppComponent</code> inject the <code>TranslateService</code> and configure it.</p>
+ <details>
+ <summary>Show code</summary>
+ <p>
+<pre class="hljs"><code><div>
+<span class="hljs-keyword">this</span>.translate.addLangs([<span class="hljs-string">'en'</span>, <span class="hljs-string">'de'</span>]);
+<span class="hljs-keyword">this</span>.translate.setDefaultLang(<span class="hljs-string">'de'</span>);
+<span class="hljs-keyword">this</span>.translate.use(<span class="hljs-string">'de'</span>);
+</div></code></pre>
+ </p>
+ </details>
+</li>
+<li>
+<p>Following the example of the solution shown, use the <code>translate</code> pipe to load the translation texts in the <code>FlightSearchComponent</code>.</p>
+ <details>
+ <summary>Show code</summary>
+ <p>
+<pre><code> ```html
+ 
+ [...]
+ {{ 'FLIGHTS.search' | translate}}
+ [...]
+ {{ 'FLIGHTS.found' | translate:{count: flights.length} }}
+ [...]
+ ```
+</code></pre>
+ </p>
+ </details>
+</li>
+<li>
+<p>Let the <code>NavbarComponent</code> inject the <code>TranslateService</code>. Also implement a method for changing the language.</p>
+ <details>
+ <summary>Show code</summary>
+ <p>
+<pre class="hljs"><code><div>
+@Component({ [...] })
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">class</span> NavbarComponent {
+    
+    <span class="hljs-keyword">constructor</span>(private translate: TranslateService) {
+    }
+
+    setLang(lang: <span class="hljs-built_in">string</span>): <span class="hljs-built_in">void</span> {
+        <span class="hljs-keyword">this</span>.translate.use(lang);
+    }
+
+    [...]
+}
+</div></code></pre>
+ </p>
+ </details>
+</li>
+<li>
+<p>In the <code>NavbarComponent</code> template, create links to change the language using the method introduced in the last paragraph.</p>
+ <details>
+ <summary>Show code</summary>
+ <p>
+<pre class="hljs"><code><div>
+<span class="hljs-tag">&lt;<span class="hljs-name">li</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">a</span> (<span class="hljs-attr">click</span>)=<span class="hljs-string">"setLang('en')"</span>&gt;</span>EN<span class="hljs-tag">&lt;/<span class="hljs-name">a</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">li</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">li</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">a</span> (<span class="hljs-attr">click</span>)=<span class="hljs-string">"setLang('de')"</span>&gt;</span>DE<span class="hljs-tag">&lt;/<span class="hljs-name">a</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">li</span>&gt;</span>
+</div></code></pre>
+ </p>
+ </details>
+</li>
+<li>
+<p>Test your solution.</p>
+</li>
+</ol>
+<h2 id="bonus--use-different-date-formats">Bonus: Use different date formats *</h2>
+<p>In this exercise you will load different formats for dates and numbers. Using these, you will change the way the <code>flight-card</code> displays the flight dates.</p>
+<ol>
+<li>
+<p>Open the file <code>app.module.ts</code> and register some locales.</p>
+ <details>
+ <summary>Show code</summary>
+ <p>
+<pre><code> ```TypeScript
+ import {registerLocaleData} from '@angular/common';
+ 
+ import localeDe from '@angular/common/locales/de';
+ import localeDeAt from '@angular/common/locales/de-AT';
+ import localeEs from '@angular/common/locales/es';
+
+ registerLocaleData(localeDe);     // de-DE
+ registerLocaleData(localeDeAt);   // de-AT
+ registerLocaleData(localeEs);     // es-ES
+ ```
+</code></pre>
+</li>
+</ol>
+  </p>
+  </details>
+<ol start="2">
+<li>
+<p>Add a provider for your default language to the <code>AppModule</code>:</p>
+<pre class="hljs"><code><div>@NgModule({
+[...],
+providers: [{provide: LOCALE_ID, useValue: <span class="hljs-string">'de'</span>}],
+bootstrap: [AppComponent]
+})
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">class</span> AppModule {
+}
+</div></code></pre>
+</li>
+<li>
+<p>Run your application and find out that the <code>flight-card</code> now displays German dates.</p>
+</li>
+<li>
+<p>Open your <code>flight-card.component.html</code> and modify the call of the <code>date</code> pipe:</p>
+<pre class="hljs"><code><div><span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span>Date: {{item.date | date:'long':'':'es'}}<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
+</div></code></pre>
+</li>
+<li>
+<p>Now the <code>flight-card</code> should display spanish dates.</p>
+</li>
+</ol>
+
+    </body>
+    </html>

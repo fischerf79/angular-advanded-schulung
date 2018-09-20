@@ -1,0 +1,555 @@
+<!DOCTYPE html>
+    <html>
+    <head>
+        <meta http-equiv="Content-type" content="text/html;charset=UTF-8">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.10.0-alpha/dist/katex.min.css" integrity="sha384-BTL0nVi8DnMrNdMQZG1Ww6yasK9ZGnUxL1ZWukXQ7fygA1py52yPp9W4wrR00VML" crossorigin="anonymous">
+        <style>
+/*--------------------------------------------------------------------------------------------- * Copyright (c) Microsoft Corporation. All rights reserved. * Licensed under the MIT License. See License.txt in the project root for license information. *--------------------------------------------------------------------------------------------*/ body { font-family: "Segoe WPC", "Segoe UI", "SFUIText-Light", "HelveticaNeue-Light", sans-serif, "Droid Sans Fallback"; font-size: 14px; padding: 0 26px; line-height: 22px; word-wrap: break-word; } #code-csp-warning { position: fixed; top: 0; right: 0; color: white; margin: 16px; text-align: center; font-size: 12px; font-family: sans-serif; background-color:#444444; cursor: pointer; padding: 6px; box-shadow: 1px 1px 1px rgba(0,0,0,.25); } #code-csp-warning:hover { text-decoration: none; background-color:#007acc; box-shadow: 2px 2px 2px rgba(0,0,0,.25); } body.scrollBeyondLastLine { margin-bottom: calc(100vh - 22px); } body.showEditorSelection .code-line { position: relative; } body.showEditorSelection .code-active-line:before, body.showEditorSelection .code-line:hover:before { content: ""; display: block; position: absolute; top: 0; left: -12px; height: 100%; } body.showEditorSelection li.code-active-line:before, body.showEditorSelection li.code-line:hover:before { left: -30px; } .vscode-light.showEditorSelection .code-active-line:before { border-left: 3px solid rgba(0, 0, 0, 0.15); } .vscode-light.showEditorSelection .code-line:hover:before { border-left: 3px solid rgba(0, 0, 0, 0.40); } .vscode-light.showEditorSelection .code-line .code-line:hover:before { border-left: none; } .vscode-dark.showEditorSelection .code-active-line:before { border-left: 3px solid rgba(255, 255, 255, 0.4); } .vscode-dark.showEditorSelection .code-line:hover:before { border-left: 3px solid rgba(255, 255, 255, 0.60); } .vscode-dark.showEditorSelection .code-line .code-line:hover:before { border-left: none; } .vscode-high-contrast.showEditorSelection .code-active-line:before { border-left: 3px solid rgba(255, 160, 0, 0.7); } .vscode-high-contrast.showEditorSelection .code-line:hover:before { border-left: 3px solid rgba(255, 160, 0, 1); } .vscode-high-contrast.showEditorSelection .code-line .code-line:hover:before { border-left: none; } img { max-width: 100%; max-height: 100%; } a { text-decoration: none; } a:hover { text-decoration: underline; } a:focus, input:focus, select:focus, textarea:focus { outline: 1px solid -webkit-focus-ring-color; outline-offset: -1px; } hr { border: 0; height: 2px; border-bottom: 2px solid; } h1 { padding-bottom: 0.3em; line-height: 1.2; border-bottom-width: 1px; border-bottom-style: solid; } h1, h2, h3 { font-weight: normal; } h1 code, h2 code, h3 code, h4 code, h5 code, h6 code { font-size: inherit; line-height: auto; } table { border-collapse: collapse; } table > thead > tr > th { text-align: left; border-bottom: 1px solid; } table > thead > tr > th, table > thead > tr > td, table > tbody > tr > th, table > tbody > tr > td { padding: 5px 10px; } table > tbody > tr + tr > td { border-top: 1px solid; } blockquote { margin: 0 7px 0 5px; padding: 0 16px 0 10px; border-left-width: 5px; border-left-style: solid; } code { font-family: Menlo, Monaco, Consolas, "Droid Sans Mono", "Courier New", monospace, "Droid Sans Fallback"; font-size: 14px; line-height: 19px; } body.wordWrap pre { white-space: pre-wrap; } .mac code { font-size: 12px; line-height: 18px; } pre:not(.hljs), pre.hljs code > div { padding: 16px; border-radius: 3px; overflow: auto; } /** Theming */ pre code { color: var(--vscode-editor-foreground); } .vscode-light pre:not(.hljs), .vscode-light code > div { background-color: rgba(220, 220, 220, 0.4); } .vscode-dark pre:not(.hljs), .vscode-dark code > div { background-color: rgba(10, 10, 10, 0.4); } .vscode-high-contrast pre:not(.hljs), .vscode-high-contrast code > div { background-color: rgb(0, 0, 0); } .vscode-high-contrast h1 { border-color: rgb(0, 0, 0); } .vscode-light table > thead > tr > th { border-color: rgba(0, 0, 0, 0.69); } .vscode-dark table > thead > tr > th { border-color: rgba(255, 255, 255, 0.69); } .vscode-light h1, .vscode-light hr, .vscode-light table > tbody > tr + tr > td { border-color: rgba(0, 0, 0, 0.18); } .vscode-dark h1, .vscode-dark hr, .vscode-dark table > tbody > tr + tr > td { border-color: rgba(255, 255, 255, 0.18); } 
+</style>
+<style>
+/* Tomorrow Theme */ /* http://jmblog.github.com/color-themes-for-google-code-highlightjs */ /* Original theme - https://github.com/chriskempson/tomorrow-theme */ /* Tomorrow Comment */ .hljs-comment, .hljs-quote { color: #8e908c; } /* Tomorrow Red */ .hljs-variable, .hljs-template-variable, .hljs-tag, .hljs-name, .hljs-selector-id, .hljs-selector-class, .hljs-regexp, .hljs-deletion { color: #c82829; } /* Tomorrow Orange */ .hljs-number, .hljs-built_in, .hljs-builtin-name, .hljs-literal, .hljs-type, .hljs-params, .hljs-meta, .hljs-link { color: #f5871f; } /* Tomorrow Yellow */ .hljs-attribute { color: #eab700; } /* Tomorrow Green */ .hljs-string, .hljs-symbol, .hljs-bullet, .hljs-addition { color: #718c00; } /* Tomorrow Blue */ .hljs-title, .hljs-section { color: #4271ae; } /* Tomorrow Purple */ .hljs-keyword, .hljs-selector-tag { color: #8959a8; } .hljs { display: block; overflow-x: auto; color: #4d4d4c; padding: 0.5em; } .hljs-emphasis { font-style: italic; } .hljs-strong { font-weight: bold; }
+</style>
+<style>
+.task-list-item { list-style-type: none; } .task-list-item-checkbox { margin-left: -20px; vertical-align: middle; }
+</style>
+        <style>
+            body {
+                font-family: -apple-system, BlinkMacSystemFont, 'Segoe WPC', 'Segoe UI', 'HelveticaNeue-Light', 'Ubuntu', 'Droid Sans', sans-serif;
+                font-size: 14px;
+                line-height: 1.6;
+            }
+        </style>
+    </head>
+    <body>
+        <h1 id="advanced-angular-workshop-libraries-and-monorepo">Advanced Angular Workshop: Libraries and Monorepo</h1>
+<ul>
+<li><a href="#advanced-angular-workshop-libraries-and-monorepo">Advanced Angular Workshop: Libraries and Monorepo</a>
+<ul>
+<li><a href="#using-the-project-monorepo">Using the Project Monorepo</a></li>
+<li><a href="#use-a-library">Use a library</a></li>
+<li><a href="#bonus-adapt-your-library">Bonus: Adapt your library *</a></li>
+<li><a href="#bonus-%C3%A8xport-your-library-to-a-local-npm-registry">Bonus: Èxport your library to a local npm registry **</a></li>
+<li><a href="#bonus-writing-a-passenger-library">Bonus: Writing a Passenger Library ***</a>
+<ul>
+<li><a href="#creating-a-libray">Creating a Libray ***</a></li>
+<li><a href="#web-api">Web API ***</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="using-the-project-monorepo">Using the Project Monorepo</h2>
+<p>In this exercise, you will expand your application by one page that lists all airports. You can orientate yourself by the existing <code>FlightSearchComponent</code>. The web API with the airports can be found here: <code>http://www.angular.at/api/airport</code>. Please note that the returned data is just an array with strings. For data access you will write an <code>AirportService</code> within the library <code>flight-api</code>.</p>
+<p>You can follow these steps:</p>
+<ol>
+<li>
+<p>Consider the Web API at <code>http://www.angular.at/api/airport</code>. Note that this Web API responds with either XML or JSON, and the answer is just an <strong>array of strings</strong>.</p>
+<p>An example of the JSON-based answer can be found here: <a href="http://www.angular.at/help">http://www.angular.at/help</a>. While the XML response uses Pascal-Case (eg <code>From</code>), the JSON response uses the usual Camel case (eg <code>from</code>). Thus, the practices of the two standards are taken into account.</p>
+</li>
+<li>
+<p>In the <code>flight-api</code> folder (<code>projects/flight-api</code> folder), create a <code>services/airport.service.ts</code> file with a <code>AirportService</code> class. Similar to <code>FlightService</code> this class should offer the possibility to search for airports. The search should be done without parameters and always return all existing airports as a string array.</p>
+<p>Attention: The web API at <a href="http://www.angular.at/api/airport">http://www.angular.at/api/airport</a> returns all airports as an array with string. This string contains the names of the airports. That's why you do not need an interface to represent airports.</p>
+ <details>
+ <summary>Show code</summary>
+ <p>
+<pre class="hljs"><code><div>
+<span class="hljs-keyword">import</span> { Injectable } <span class="hljs-keyword">from</span> <span class="hljs-string">'@angular/core'</span>;
+<span class="hljs-keyword">import</span> { HttpClient } <span class="hljs-keyword">from</span> <span class="hljs-string">'@angular/common/http'</span>;
+<span class="hljs-keyword">import</span> { Observable } <span class="hljs-keyword">from</span> <span class="hljs-string">'rxjs/Observable'</span>;
+
+<span class="hljs-meta">@Injectable</span>({ 
+    providedIn: <span class="hljs-string">'root'</span> 
+})
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">class</span> AirportService {
+
+    <span class="hljs-keyword">constructor</span>(<span class="hljs-params"><span class="hljs-keyword">private</span> httpClient: HttpClient</span>) { 
+    }
+
+    findAll(): Observable&lt;<span class="hljs-built_in">string</span>[]&gt; {
+        <span class="hljs-keyword">const</span> url = <span class="hljs-string">'http://www.angular.at/api/airport'</span>;
+        <span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>.httpClient.get&lt;<span class="hljs-built_in">string</span>[]&gt;(url);
+    }
+
+}
+</div></code></pre>
+ </p>
+ </details>
+</li>
+<li>
+<p>Reexport the <code>AirportService</code> in the <code>public_api.ts</code> barrel, which is located at the root of the library.</p>
+ <details>
+ <summary>Show code</summary>
+ <p>
+<pre class="hljs"><code><div>
+<span class="hljs-keyword">export</span> { FlightApiModule } <span class="hljs-keyword">from</span> <span class="hljs-string">'./lib/flight-api.module'</span>;
+<span class="hljs-keyword">export</span> { Flight } <span class="hljs-keyword">from</span> <span class="hljs-string">'./lib/models/flight'</span>;
+<span class="hljs-keyword">export</span> { FlightService } <span class="hljs-keyword">from</span> <span class="hljs-string">'./lib/services/flight.service'</span>;
+<span class="hljs-keyword">export</span> { AirportService } <span class="hljs-keyword">from</span> <span class="hljs-string">'./lib/services/airport.service'</span>;
+</div></code></pre>
+ </p>
+ </details>
+</li>
+<li>
+<p>Switch back to the application (folder <code>apps/flight-app/src/app</code>) and create an <code>AirportComponent</code>.  Implement these files in the same way as the files for the <code>FlightSearchComponent</code> so that they list all the airports.</p>
+ <details>
+ <summary>Show code</summary>
+ <p>
+<pre class="hljs"><code><div>
+<span class="hljs-keyword">import</span> { Component, OnInit } <span class="hljs-keyword">from</span> <span class="hljs-string">'@angular/core'</span>;
+<span class="hljs-keyword">import</span> { AirportService } <span class="hljs-keyword">from</span> <span class="hljs-string">'@flight-workspace/flight-api'</span>;
+
+<span class="hljs-meta">@Component</span>({
+    selector: <span class="hljs-string">'airport'</span>,
+    templateUrl: <span class="hljs-string">'./airport.component.html'</span>
+})
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">class</span> AirportComponent <span class="hljs-keyword">implements</span> OnInit {
+
+    <span class="hljs-keyword">private</span> airports: <span class="hljs-built_in">string</span>[] = [];
+
+    <span class="hljs-keyword">constructor</span>(<span class="hljs-params"><span class="hljs-keyword">private</span> airportService: AirportService</span>) { 
+    }
+
+    ngOnInit() {
+        <span class="hljs-keyword">this</span>.airportService.findAll().subscribe(<span class="hljs-function"><span class="hljs-params">airports</span> =&gt;</span> {
+        <span class="hljs-keyword">this</span>.airports = airports;
+        });
+    }
+
+}
+</div></code></pre>
+ </p>
+ </details>
+ <details>
+ <summary>Show code (HTML)</summary>
+ <p>
+<pre class="hljs"><code><div>
+<span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"card"</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"header"</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">h1</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"title"</span>&gt;</span>Airports<span class="hljs-tag">&lt;/<span class="hljs-name">h1</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"content"</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"row"</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"col-lg-3"</span> *<span class="hljs-attr">ngFor</span>=<span class="hljs-string">"let airport of airports"</span>&gt;</span>
+        {{airport}}
+    <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>    
+</div></code></pre>
+ </p>
+ </details>
+</li>
+<li>
+<p>Register your component in the <code>FlightBookingModule</code> under <code>declarations</code>.
+If you used the cli to create the component it is already registered and you can skip this step.</p>
+ <details>
+ <summary>Show code</summary>
+ <p>
+<pre class="hljs"><code><div>
+<span class="hljs-meta">@NgModule</span>({
+    [...]
+    declarations: [
+        [...]    
+        AirportComponent
+    ],
+    [...]
+})
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">class</span> FlightBookingModule { }
+</div></code></pre>
+ </p>
+ </details>
+</li>
+<li>
+<p>Create a route for your new component in the <code>flight-booking.routes.ts</code> file.</p>
+ <details>
+ <summary>Show code</summary>
+ <p>
+<pre class="hljs"><code><div>
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">const</span> FLIGHT_BOOKING_ROUTES: Routes = [
+    {
+        path: <span class="hljs-string">''</span>,
+        component: FlightBookingComponent,
+        [...]
+        children: [
+            {
+                path: <span class="hljs-string">'airports'</span>,
+                component: AirportComponent
+            },
+            [...]
+        ]
+    }
+];
+</div></code></pre>
+ </p>
+ </details>
+</li>
+<li>
+<p>Set up a main menu item for your new route in the file <code>flight-booking.component.html</code>.</p>
+ <details>
+ <summary>Show code</summary>
+ <p>
+<pre class="hljs"><code><div>
+<span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"card"</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"content"</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">a</span> <span class="hljs-attr">routerLink</span>=<span class="hljs-string">"./flight-search"</span>&gt;</span>Flight Search<span class="hljs-tag">&lt;/<span class="hljs-name">a</span>&gt;</span> | 
+        <span class="hljs-tag">&lt;<span class="hljs-name">a</span> <span class="hljs-attr">routerLink</span>=<span class="hljs-string">"./passenger-search"</span>&gt;</span>Passenger Search<span class="hljs-tag">&lt;/<span class="hljs-name">a</span>&gt;</span> |
+
+        <span class="hljs-comment">&lt;!-- new menu item --&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">a</span> <span class="hljs-attr">routerLink</span>=<span class="hljs-string">"./airports"</span>&gt;</span>Airports<span class="hljs-tag">&lt;/<span class="hljs-name">a</span>&gt;</span> 
+    <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+
+<span class="hljs-tag">&lt;<span class="hljs-name">router-outlet</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">router-outlet</span>&gt;</span>
+</div></code></pre>
+ </p>
+ </details>
+</li>
+<li>
+<p>Test your solution.</p>
+</li>
+</ol>
+<h2 id="use-a-library">Use a library</h2>
+<p>In this example, you will look at an included library.</p>
+<ol>
+<li>
+<p>Look at the barrel in the <code>public_api.ts</code> file.</p>
+</li>
+<li>
+<p>Open the file <code>logger.module.ts</code> and have a look at the static  <code>forRoot</code> method. Find out how the library can be configured with it.</p>
+</li>
+<li>
+<p>Take a closer look at the following services:</p>
+<ul>
+<li>LoggerService</li>
+<li>LoggerConfig</li>
+</ul>
+</li>
+<li>
+<p>Look at the file <code>package.json</code> in the project's root and focus on the following properties:</p>
+<ul>
+<li>name</li>
+<li>version</li>
+<li>peerDependencies</li>
+</ul>
+</li>
+<li>
+<p>Look at the files <code>ng-package.*</code> in the <code>logger-lib</code> folder.</p>
+</li>
+<li>
+<p>Open the file <code>tsconfig.json</code> and find out that there is a path mapping for the <code>logger-lib</code>.</p>
+</li>
+<li>
+<p>Open the <code>flight-app</code>'s <code>AppModule</code> and import the <code>logger-lib</code> into it.</p>
+<p>You may now have to manually write the necessary imports for the library:
+<code>import {LoggerModule} from '@my/logger-lib';</code></p>
+ <details>
+ <summary>Show code</summary>
+ <p>
+<pre class="hljs"><code><div>
+[...]
+<span class="hljs-keyword">import</span> { LoggerModule } <span class="hljs-keyword">from</span> <span class="hljs-string">'@my/logger-lib'</span>; 
+    <span class="hljs-comment">// ^^^ Perhaps you have to type this manually </span>
+[...]
+
+<span class="hljs-meta">@NgModule</span>({
+    imports: [
+        BrowserModule,
+        HttpClientModule,
+        LoggerModule.forRoot({ enableDebug: <span class="hljs-literal">true</span> }), <span class="hljs-comment">// &lt;-- Add this above the shared module. Order matters.</span>
+        [...]
+    ],
+    [...]
+})
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">class</span> AppModule { }
+</div></code></pre>
+ </p>
+ </details>
+</li>
+<li>
+<p>Switch to the <code>AppComponent</code> and have the <code>LoggerService</code> injected. Then log some information with it.</p>
+<details>
+<summary>Show code</summary>
+<p>
+<pre class="hljs"><code><div>
+<span class="hljs-keyword">import</span> { LoggerService } <span class="hljs-keyword">from</span> <span class="hljs-string">'@my/logger-lib'</span>;
+    <span class="hljs-comment">// ^^^ Perhaps you have to type this manually </span>
+
+<span class="hljs-meta">@Component</span>({
+    selector: <span class="hljs-string">'flight-app'</span>,
+    templateUrl: <span class="hljs-string">'./app.component.html'</span>,
+    styleUrls: [<span class="hljs-string">'./app.component.css'</span>]
+})
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">class</span> AppComponent  {
+    <span class="hljs-keyword">constructor</span>(<span class="hljs-params">
+        <span class="hljs-keyword">private</span> loggerService: LoggerService
+    </span>) {
+
+        <span class="hljs-keyword">this</span>.loggerService.log(<span class="hljs-string">'log'</span>);
+        <span class="hljs-keyword">this</span>.loggerService.debug(<span class="hljs-string">'debug'</span>);
+
+    }
+}
+</div></code></pre>
+</p>
+</details>
+</li>
+<li>
+<p>Test your solution. Make sure, that you have enabled debug information in your JavaScript console.</p>
+<p><img src="https://i.imgur.com/in5dIe5.png" alt=""></p>
+</li>
+</ol>
+<h2 id="bonus-adapt-your-library">Bonus: Adapt your library *</h2>
+<p>In this exercise, you extend the logger-lib by an <code>LogFormatterService</code>. Your lib will provide a simple default implementation for it and the consumer of your library will have to possibility to exchange it by a custom implementation.</p>
+<ol>
+<li>
+<p>Open your library and move to the folder <code>src/lib</code>.</p>
+</li>
+<li>
+<p>Add a file <code>log-formatter.service.ts</code>:</p>
+<pre class="hljs"><code><div><span class="hljs-keyword">export</span> <span class="hljs-keyword">abstract</span> <span class="hljs-keyword">class</span> LogFormatterService {
+    <span class="hljs-keyword">abstract</span> format(message: <span class="hljs-built_in">string</span>): <span class="hljs-built_in">string</span>;
+}
+</div></code></pre>
+</li>
+<li>
+<p>Add a file <code>default-log-formatter.service.ts</code> with an default implementation of <code>LogFormatterService</code> that just returns the message without any formatting.</p>
+ <details>
+ <summary>Show Code</summary>
+ <p>
+<pre class="hljs"><code><div><span class="hljs-keyword">import</span> { Injectable } <span class="hljs-keyword">from</span> <span class="hljs-string">'@angular/core'</span>;
+<span class="hljs-keyword">import</span> { LogFormatterService } <span class="hljs-keyword">from</span> <span class="hljs-string">'./log-formatter.service'</span>;
+
+<span class="hljs-meta">@Injectable</span>()
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">class</span> DefaultLogFormatterService <span class="hljs-keyword">implements</span> LogFormatterService {
+    format(message: <span class="hljs-built_in">string</span>): <span class="hljs-built_in">string</span> {
+        <span class="hljs-keyword">return</span> message;
+    }
+}
+</div></code></pre>
+ </p>
+ </details>
+</li>
+<li>
+<p>Open the <code>logger.service.ts</code> file and inject the <code>LogFormatterService</code> into the <code>LoggerService</code>. Use it to format the log messages.</p>
+ <details>
+ <summary>Show code</summary>
+ <p>
+<pre class="hljs"><code><div><span class="hljs-meta">@Injectable</span>({ 
+    providedIn: <span class="hljs-string">'root'</span> 
+})
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">class</span> LoggerService {
+
+    <span class="hljs-keyword">constructor</span>(<span class="hljs-params">
+        <span class="hljs-keyword">private</span> config: LoggerConfig,
+        <span class="hljs-keyword">private</span> logFormatter: LogFormatterService
+    </span>) { }
+
+    debug(message: <span class="hljs-built_in">string</span>): <span class="hljs-built_in">void</span> {
+        <span class="hljs-keyword">if</span> (!<span class="hljs-keyword">this</span>.config.enableDebug) <span class="hljs-keyword">return</span>;
+        <span class="hljs-built_in">console</span>.debug(<span class="hljs-keyword">this</span>.logFormatter.format(message));
+    }
+
+    log(message: <span class="hljs-built_in">string</span>): <span class="hljs-built_in">void</span> {
+        <span class="hljs-built_in">console</span>.log(<span class="hljs-keyword">this</span>.logFormatter.format(message));
+    }
+}
+</div></code></pre>
+ </p>
+ </details>
+</li>
+<li>
+<p>Open the <code>logger-config.ts</code> file and add an optional field that points to a LogFormatterService class (!) to use. A type that points to such a class can be written as follows:</p>
+<pre class="hljs"><code><div><span class="hljs-keyword">export</span> <span class="hljs-keyword">type</span> LogFormatterServiceType = <span class="hljs-keyword">new</span> () =&gt; LogFormatterService;
+</div></code></pre>
+ <details>
+ <summary>Show code</summary>
+ <p>
+<pre class="hljs"><code><div><span class="hljs-keyword">import</span> { Injectable } <span class="hljs-keyword">from</span> <span class="hljs-string">'@angular/core'</span>;
+<span class="hljs-keyword">import</span> { LogFormatterService } <span class="hljs-keyword">from</span> <span class="hljs-string">'./log-formatter.service'</span>;
+
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">type</span> LogFormatterServiceType = <span class="hljs-keyword">new</span> () =&gt; LogFormatterService;
+
+<span class="hljs-meta">@Injectable</span>()
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">abstract</span> <span class="hljs-keyword">class</span> LoggerConfig {
+    enableDebug: <span class="hljs-built_in">boolean</span>;
+    logFormatterType?: LogFormatterServiceType;
+}    
+</div></code></pre>
+ </p>
+ </details>
+</li>
+<li>
+<p>Open the <code>public_api.ts</code> file and export the newly introduced <code>LoggerConfig</code> and <code>DefaultLogFormatterService</code>.</p>
+ <details>
+ <summary>Show code</summary>
+ <p>
+<pre class="hljs"><code><div><span class="hljs-keyword">export</span> { LoggerConfig } <span class="hljs-keyword">from</span> <span class="hljs-string">'./lib/logger-config'</span>;
+<span class="hljs-keyword">export</span> { LoggerModule } <span class="hljs-keyword">from</span> <span class="hljs-string">'./lib/logger.module'</span>;
+<span class="hljs-keyword">export</span> { LoggerService } <span class="hljs-keyword">from</span> <span class="hljs-string">'./lib/logger.service'</span>;
+
+<span class="hljs-comment">// Add this:</span>
+<span class="hljs-keyword">export</span> { LogFormatterService } <span class="hljs-keyword">from</span> <span class="hljs-string">'./lib/log-formatter.service'</span>;
+<span class="hljs-keyword">export</span> { DefaultLogFormatterService } <span class="hljs-keyword">from</span> <span class="hljs-string">'./lib/default-log-formatter.service'</span>;
+</div></code></pre>
+ </p>
+ </details>
+</li>
+<li>
+<p>Open the file <code>logger.module.ts</code>. Modify the <code>forRoot</code> method, so that it binds the <code>LogFormatterService</code> token to the <code>LogFormatterService</code> class in the passed configuration object.</p>
+ <details>
+ <summary>Show code</summary>
+ <p>
+<pre class="hljs"><code><div><span class="hljs-keyword">const</span> defaultFormatterConfig = [{
+    provide: LogFormatterService,
+    useClass: DefaultLogFormatterService
+}];
+
+<span class="hljs-meta">@NgModule</span>({
+imports: [
+    CommonModule
+],
+declarations: []
+})
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">class</span> LoggerModule { 
+    <span class="hljs-keyword">static</span> forRoot(config: LoggerConfig): ModuleWithProviders {
+        
+        <span class="hljs-keyword">return</span> {
+            ngModule: LoggerModule,
+            providers: [
+                { provide: LoggerConfig, useValue: config},
+
+                <span class="hljs-comment">// This is a bit special but needed as the </span>
+                <span class="hljs-comment">// Angular Compiler needs to statically find</span>
+                <span class="hljs-comment">// out whats going on here ...</span>
+                ...(!config.logFormatterType) ? 
+                    defaultFormatterConfig : 
+                    [{provide: LogFormatterService, useClass: config.logFormatterType}],
+            ]
+        }
+    }
+
+}
+</div></code></pre>
+ </p>
+ </details>
+</li>
+<li>
+<p>Switch your your <code>flight-app</code>. In your application, switch to the <code>shared</code> folder and create a new <code>logging</code> sub-folder.</p>
+</li>
+<li>
+<p>In the new <code>logging</code> folder, create a <code>custom-log-formatter.service</code> file with a service that implements the abstract class <code>LogFormatterService</code>:</p>
+<details>
+<summary>Show code</summary>
+<p>
+<pre class="hljs"><code><div>
+<span class="hljs-keyword">import</span> { Injectable } <span class="hljs-keyword">from</span> <span class="hljs-string">'@angular/core'</span>;
+<span class="hljs-keyword">import</span> { LogFormatterService } <span class="hljs-keyword">from</span> <span class="hljs-string">'@my/logger-lib'</span>;
+    <span class="hljs-comment">// ^^^ Perhaps you have to type this manually</span>
+
+<span class="hljs-meta">@Injectable</span>({
+    providedIn: <span class="hljs-string">'root'</span>
+})
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">class</span> CustomLogFormatterService <span class="hljs-keyword">implements</span> LogFormatterService {
+
+    <span class="hljs-keyword">constructor</span>(<span class="hljs-params"></span>) { }
+
+    format(message: <span class="hljs-built_in">string</span>): <span class="hljs-built_in">string</span> {
+        <span class="hljs-keyword">const</span> now = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Date</span>().toISOString();
+        <span class="hljs-keyword">return</span> <span class="hljs-string">`[<span class="hljs-subst">${now}</span>] <span class="hljs-subst">${message}</span>`</span>;
+    }
+
+}
+</div></code></pre>
+</p>
+</details>
+</li>
+<li>
+<p>Register the new service in the <code>AppModule</code> when calling <code>LoggerModule.forRoot</code>.</p>
+<details>
+<summary>Show code</summary>
+<p>
+<p>[...]</p>
+<pre class="hljs"><code><div><span class="hljs-meta">@NgModule</span>({
+    imports: [
+        BrowserModule,
+        HttpClientModule,
+        FlightBookingModule,
+        LoggerModule.forRoot({ 
+            enableDebug: <span class="hljs-literal">true</span>,
+            <span class="hljs-comment">// Add this:</span>
+            logFormatterType: CustomLogFormatterService
+        }),
+
+        [...]
+        
+    ],
+    [...]
+})
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">class</span> AppModule { }
+
+</div></code></pre>
+</p>
+</details>
+</li>
+<li>
+<p>Test your application and notice that the new log format, including the current time, is now being used.</p>
+</li>
+</ol>
+<h2 id="bonus-%C3%A8xport-your-library-to-a-local-npm-registry">Bonus: Èxport your library to a local npm registry **</h2>
+<p>In this exercise you will download a simple npm registry using <code>npm install</code> and use it to publish your library. If you don't have the necessary rights for downloading the registry, skip this lab.</p>
+<ol>
+<li>
+<p>Download the local npm registry verdaccio:</p>
+<pre><code>npm i -g verdaccio
+</code></pre>
+</li>
+<li>
+<p>Start it in a seperate command prompt:</p>
+<pre><code>verdaccio
+</code></pre>
+</li>
+<li>
+<p>After starting verdaccio for the first time, you have to add a user:</p>
+<pre><code>npm adduser --registry http://localhost:4873/
+</code></pre>
+</li>
+<li>
+<p>At the console, switch to your project's folder.</p>
+</li>
+<li>
+<p>Build the library with <code>npm run build:lib</code>.</p>
+<p>Under Linux and OS X, you may need to use chmod to set the x flag for all files in the <code>node_modules/.bin</code> folder.</p>
+</li>
+<li>
+<p>Move to the <code>dist/logger-lib</code> folder of your library and deploy it to verdaccio:</p>
+<pre><code>npm publish --registry http://localhost:4873/
+</code></pre>
+<p>If you have already published it and you want to republish it, don't forget to increase your version number in the <code>src/package.json</code> file. For this, you can switch to the <code>src</code> folder and call <code>npm version minor</code>.</p>
+</li>
+<li>
+<p>Open a browser window and navigate to verdaccio (<a href="http://localhost:4873/">http://localhost:4873/</a>). Find out, that your library ist listed there.</p>
+</li>
+</ol>
+<h2 id="bonus-writing-a-passenger-library">Bonus: Writing a Passenger Library ***</h2>
+<p>In this bonus exercise, you will use the know-how collected above to write an other library for loading and saving passengers. As the existing <code>flight-api</code> library it shall provide the possibility to load and save entities. You can use the contents of the existing <code>flight-api</code> as an inspiration for this exercise.</p>
+<p>Use this library to implement the menu item <code>flights | passengers</code>.</p>
+<p>The following two sections provide further information on this.</p>
+<h3 id="creating-a-libray">Creating a Libray ***</h3>
+<p>To create a library you can use the following command:</p>
+<pre><code>``ng generate lib passenger-api``
+</code></pre>
+<p>If you have not installed the CLI, you can use the local installation:</p>
+<pre><code>``npm run ng -- generate lib passenger-api``
+</code></pre>
+<h3 id="web-api">Web API ***</h3>
+<p>The Web API for passengers can be found here:</p>
+<pre><code>- www.angular.at/api/passenger
+</code></pre>
+<p>You can load data using <code>GET</code> and write data using <code>POST</code>. To update an existing passenger, use POST with his/her current Id. To insert a new one, use POST with the Id <code>0</code>.</p>
+<p>More information about this endpoint can be found here:</p>
+<pre><code>- www.angular.at/help
+</code></pre>
+<p>Please note that it supports both, <code>XML</code> and <code>JSON</code>. While in <code>XML</code> names are written in 'PascalCase', in <code>JSON</code> 'camelCase' is used.</p>
+
+    </body>
+    </html>
